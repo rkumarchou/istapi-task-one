@@ -24,7 +24,7 @@ class AuthService {
   }
 
   public async login(userData: CreateUserDto): Promise<{ cookie: string; findUser: User }> {
-    if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
+    if (isEmpty(userData)) throw new HttpException(400, 'Invalid email/password');
 
     const findUser: User = this.users.find(user => user.email === userData.email);
     if (!findUser) throw new HttpException(409, `You're email ${userData.email} not found`);
