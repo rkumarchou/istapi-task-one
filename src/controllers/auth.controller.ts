@@ -6,7 +6,6 @@ import { User } from '@interfaces/users.interface';
 import authMiddleware from '@middlewares/auth.middleware';
 import { validationMiddleware } from '@middlewares/validation.middleware';
 import AuthService from '@services/auth.service';
-import { logger } from '@/utils/logger';
 
 @Controller()
 export class AuthController {
@@ -15,7 +14,6 @@ export class AuthController {
   @Post('/login')
   @UseBefore(validationMiddleware(CreateUserDto, 'body'))
   async logIn(@Res() res: Response, @Body() userData: CreateUserDto) {
-    logger.info('coming to login', userData);
     const { cookie, findUser } = await this.authService.login(userData);
     res.setHeader('Set-Cookie', [cookie]);
     return { data: findUser, message: 'login' };
@@ -24,7 +22,6 @@ export class AuthController {
   @Get('/logout')
   @UseBefore(authMiddleware)
   async logOut(@Req() req: RequestWithUser, @Res() res: Response) {
-    logger.info('Hitting Here');
     const userData: User = req.user;
     const logOutUserData: User = await this.authService.logout(userData);
 
