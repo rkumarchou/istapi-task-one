@@ -56,5 +56,11 @@ yarn dev OR npm run dev
  `[GET] localhost:3000/logout`
  This will ensure that the authentication and cookies are cleaned from the headers and the user remains no longer authenticated.
 
+ ## Development System Specifications
+ * Nodejs - `v16.5.0`
+ * Yarn - `v1.22.11`
+ * NPM - `v7.20.1`
+ * OS - `Ubuntu 20.04`
+
 
 
