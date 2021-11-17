@@ -20,6 +20,7 @@ export class MoviesController {
   }
 
   @Get('/movies')
+  @HttpCode(200)
   @UseBefore(authMiddleware)
   @OpenAPI({ summary: 'Return a list of Movies based on criteria' })
   async getMovies() {
