@@ -32,6 +32,7 @@ class MovieService {
     try {
       const { id = null, title = '', cast = '' } = params;
       let resultantMovies: Movie[] = this.movies;
+      // Below logic is mimicking the database. With proper db one dont need a lot of JS logic like this
       if (id) resultantMovies = resultantMovies.filter((item: Movie) => item.id === id);
       if (title) resultantMovies = resultantMovies.filter((item: Movie) => item.title.toLowerCase() === title.toLowerCase());
       if (cast) {
