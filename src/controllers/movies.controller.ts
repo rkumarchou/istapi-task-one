@@ -1,8 +1,8 @@
-import { Controller, Body, Get, Post, HttpCode, UseBefore } from 'routing-controllers';
+import { Controller, Body, Get, Post, HttpCode, UseBefore, QueryParams } from 'routing-controllers';
 import { OpenAPI } from 'routing-controllers-openapi';
 import { validationMiddleware } from '@middlewares/validation.middleware';
 import MovieService from '@/services/movie.service';
-import { CreateMovieDTO } from '@/dtos/movies.dto';
+import { CreateMovieDTO, GetMoviesQP } from '@/dtos/movies.dto';
 import { Movie } from '@/interfaces/movies.interface';
 import authMiddleware from '@/middlewares/auth.middleware';
 
@@ -23,8 +23,8 @@ export class MoviesController {
   @HttpCode(200)
   @UseBefore(authMiddleware)
   @OpenAPI({ summary: 'Return a list of Movies based on criteria' })
-  async getMovies() {
-    const getTheMovies: Movie[] = await this.movieService.getMovies();
+  async getMovies(@QueryParams() params: GetMoviesQP) {
+    const getTheMovies: Movie[] = await this.movieService.getMovies(params);
     return { data: getTheMovies, message: 'getMovies' };
   }
 }

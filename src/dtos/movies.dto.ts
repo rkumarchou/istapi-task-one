@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, IsNotEmpty, IsArray } from 'class-validator';
+import { IsString, IsNumber, IsOptional, IsNotEmpty, IsArray, isString } from 'class-validator';
 
 export class CreateMovieDTO {
   @IsString()
@@ -17,4 +17,18 @@ export class CreateMovieDTO {
   @IsArray()
   @IsString({ each: true })
   cast?: string[];
+}
+
+export class GetMoviesQP {
+  @IsNumber()
+  @IsOptional()
+  id?: number;
+
+  @IsString()
+  @IsOptional()
+  title?: string;
+
+  @IsString()
+  @IsOptional()
+  cast?: string;
 }

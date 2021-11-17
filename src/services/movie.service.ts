@@ -3,6 +3,7 @@ import movieModel from '@models/movies.model';
 import { isEmpty } from '@utils/util';
 import { Movie } from '@/interfaces/movies.interface';
 import { logger } from '@/utils/logger';
+import { GetMoviesQP } from '@/dtos/movies.dto';
 
 class MovieService {
   public movies = movieModel;
@@ -27,9 +28,22 @@ class MovieService {
     }
   }
 
-  public async getMovies(): Promise<Movie[]> {
+  public async getMovies(params: GetMoviesQP): Promise<Movie[]> {
     try {
-      return this.movies;
+      const { id = null, title = '', cast = '' } = params;
+      let resultantMovies: Movie[] = this.movies;
+      if (id) resultantMovies = resultantMovies.filter((item: Movie) => item.id === id);
+      if (title) resultantMovies = resultantMovies.filter((item: Movie) => item.title.toLowerCase() === title.toLowerCase());
+      if (cast) {
+        resultantMovies = resultantMovies.filter((item: Movie) => {
+          let castMatched = false;
+          item.cast.forEach(item => {
+            if (item.toLowerCase().includes(cast)) castMatched = true;
+          });
+          return castMatched;
+        });
+      }
+      return resultantMovies;
     } catch (e) {
       throw new HttpException(500, 'Caught while getting movie name');
     }
