@@ -14,9 +14,12 @@
 ## Dev Environment setup
 
  * Clone the repository
+```
+git clone https://github.com/rkumarchou/istapi-task-one.git
+```
  * Go to project directory terminal 
 ```
-cd task-one
+cd istapi-task-one
 ```
  * Install the dependencies:
 ```
@@ -33,8 +36,8 @@ yarn dev OR npm run dev
 ```
 
 ## Utilising the REST APIs
- * Start the dev environment as explained above. Ther server would be running on localhost:3000
- * Now to access the APIs, we need to login else it will show unauthenticated. For logging in, hit via postman: 
+ * Start the dev environment as explained above. The server would be running on localhost:3000
+ * Now to access the APIs, we need to login else it will show unauthenticated. For logging in, hit via postman or whatever client you use: 
   `[POST] localhost:3000/login` with the following body:
 ```
 {
