@@ -22,6 +22,10 @@ cd task-one
 ```
 yarn OR npm install
 ```
+ * Create a .env file at the project root with following contents:
+```
+PORT=3000
+```
 
  * Start the server in dev mode
 ```
